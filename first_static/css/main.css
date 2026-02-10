@@ -30,13 +30,22 @@ h3 {
     text-align: center;
 }
 
-h6 {
-    /*font-family: "Le Jour Script", cursive;*/
-    font-size: calc(1rem + 1vw)
-}
+
 
 p {
     font-size: calc(1.8rem + .6vw);
+    text-align: center;
+}
+
+.small{
+    font-family: "Le Jour Script", cursive;
+    font-size: calc(1.4rem + .6vw);
+    text-align: center;
+}
+
+.display-4 {
+    font-family: "Le Jour Script", cursive;
+    font-size: calc(3.5rem + 1.5vw);
     text-align: center;
 }
 
@@ -89,8 +98,13 @@ p {
     --bs-btn-disabled-color: #fff;
     --bs-btn-disabled-bg: #cdb6a5;
     --bs-btn-disabled-border-color: #cdb6a5;
+    font-size: calc(3.5rem + .6vw);
 }
 
+.card {
+    --bs-card-bg: #fafafa;
+    --bs-card-border-width: 0px;
+}
 
 .embed-map-fixed {
     /*position: relative;*/
@@ -107,6 +121,6 @@ p {
 }
 
 .embed-map-frame {
-    width: 600px !important;
-    height: 400px !important;
+    width: 800px !important;
+    height: 600px !important;
 }
