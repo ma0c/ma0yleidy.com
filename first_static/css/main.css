@@ -1,6 +1,12 @@
 :root {
     --bs-primary: #cdb6a5;
-    --bs-primary-rgb: 255, 0, 0;
+    --bs-primary-rgb: 205, 182, 165;
+    --bsb-tl-color: #cdb6a5;
+    --bsb-tl-color-rgb: 205, 182, 165;
+}
+
+body {
+    background: #fafafa;
 }
 @font-face {
     font-family: "Le Jour Script";
@@ -14,19 +20,23 @@
 
 h1 {
     /*font-family: "Le Jour Script", cursive;*/
-    font-size: calc(3rem + 1.5vw)
+    font-size: calc(4.5rem + 1.5vw)
 }
 h2 {
     /*font-family: "Le Jour Script", cursive;*/
     font-size: calc(2rem + 1.5vw)
 }
-
 h3 {
     text-align: center;
 }
 
+h6 {
+    /*font-family: "Le Jour Script", cursive;*/
+    font-size: calc(1rem + 1vw)
+}
+
 p {
-    font-size: calc(1.3rem + .6vw);
+    font-size: calc(1.8rem + .6vw);
     text-align: center;
 }
 
@@ -64,3 +74,39 @@ p {
 /*.custom-btn {*/
 /*    background: #cdb6a5*/
 /*}*/
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #cdb6a5;
+    --bs-btn-border-color: #cdb6a5;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #bca594;
+    --bs-btn-hover-border-color #897375;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #cdb6a5;
+    --bs-btn-disabled-border-color: #cdb6a5;
+}
+
+
+.embed-map-fixed {
+    /*position: relative;*/
+    /*text-align: right;*/
+    /*width: 600px;*/
+    /*height: 400px;*/
+}
+
+.embed-map-container {
+    /*overflow: hidden;*/
+    /*background: none !important;*/
+    /*width: 600px;*/
+    /*height: 400px;*/
+}
+
+.embed-map-frame {
+    width: 600px !important;
+    height: 400px !important;
+}

@@ -1,6 +1,6 @@
 /* Timeline 8 https://unpkg.com/bs-brain@2.0.4/tutorials/timelines/timeline-8/assets/css/timeline-8.css*/
 .fs-7 {
-    font-size: .875rem !important
+    font-size: calc(1rem + 1vw)
 }
 
 .bsb-timeline-8 {
@@ -22,6 +22,7 @@
 
 .bsb-timeline-8 .timeline:after {
     background-color: var(--bsb-tl-color);
+    background-color: #cdb6a5;
     bottom: 0;
     content: "";
     left: 0;
