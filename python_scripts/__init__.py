@@ -1,0 +1,1 @@
+from slugify_attendees import get_cleaned_invitees_list, INVITEES_LIST
