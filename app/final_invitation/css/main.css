@@ -1,0 +1,126 @@
+:root {
+    --bs-primary: #cdb6a5;
+    --bs-primary-rgb: 205, 182, 165;
+    --bsb-tl-color: #cdb6a5;
+    --bsb-tl-color-rgb: 205, 182, 165;
+}
+
+body {
+    background: #fafafa;
+    font-family: Serif !important;
+}
+@font-face {
+    font-family: "Le Jour Script";
+    src: url(../fonts/le-jour-script.otf)  format("otf");
+}
+
+.le-jour-font {
+    font-family: "Le Jour Script", cursive;
+}
+
+h1 {
+    /*font-family: "Le Jour Script", cursive;*/
+    font-size: calc(4.5rem + 1.5vw) !important;
+}
+h2 {
+    /*font-family: "Le Jour Script", cursive;*/
+    font-size: calc(2rem + 1.5vw) !important;
+}
+h3 {
+    text-align: center;
+}
+
+
+
+p {
+    font-size: calc(1.8rem + .6vw);
+    text-align: center;
+}
+
+.small{
+    font-family: "Le Jour Script", cursive;
+    font-size: calc(1.4rem + .6vw);
+    text-align: center;
+}
+
+.display-4 {
+    font-family: "Le Jour Script", cursive;
+    font-size: calc(3.5rem + 1.5vw);
+    text-align: center;
+}
+
+.mt-n10 {
+  margin-top: -10rem !important;
+}
+
+.torn {
+    position: relative;
+  /*background: url(//s.ytimg.com/yt/imgbin/www-refreshbg-vflC3wnbM.png) 0;*/
+  /*padding: 1em;*/
+
+
+}
+
+.torn:before, .torn:after {
+    content: "";
+  position: absolute;
+  height: 20px;
+  width: 100%;
+  left: 0;
+  clip-path: polygon(1% 0%, 4% 100%, 9% 0%, 13% 100%, 19% 1%, 21% 100%, 26% 5%, 30% 100%, 36% 2%, 43% 100%, 50% 1%, 52% 100%, 61% 0%, 69% 94%, 70% 0%, 76% 100%, 81% 0%, 84% 100%, 91% 0%, 97% 100%, 99% 3%);
+}
+
+.torn:before {
+  background-color: #2e3537;
+  top: 0;
+}
+
+/*body {*/
+/*  background: #a7a7a7;*/
+/*  padding: 20px;*/
+/*}*/
+
+/*.custom-btn {*/
+/*    background: #cdb6a5*/
+/*}*/
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #cdb6a5 !important;
+    --bs-btn-border-color: #cdb6a5 !important;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #eac2a1 !important;
+    --bs-btn-hover-border-color: #897375 !important;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #cdb6a5;
+    --bs-btn-active-border-color: #fff !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #cdb6a5;
+    --bs-btn-disabled-border-color: #cdb6a5;
+    font-size: calc(3.5rem + .6vw);
+}
+
+.card {
+    --bs-card-bg: #fafafa;
+    --bs-card-border-width: 0px;
+}
+
+.embed-map-fixed {
+    /*position: relative;*/
+    /*text-align: right;*/
+    /*width: 600px;*/
+    /*height: 400px;*/
+}
+
+.embed-map-container {
+    /*overflow: hidden;*/
+    /*background: none !important;*/
+    /*width: 600px;*/
+    /*height: 400px;*/
+}
+
+.embed-map-frame {
+    width: 800px !important;
+    height: 600px !important;
+}

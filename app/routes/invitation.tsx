@@ -1,5 +1,5 @@
-import type { Route } from "./+types/home";
-import { Invitation } from "../public_invitation/invitation";
+import type { Route } from "./+types/invitation";
+import { Invitation } from "../final_invitation/invitation";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
+export default function InvitationRoute() {
   return <Invitation />;
 }

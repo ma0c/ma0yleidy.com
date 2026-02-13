@@ -74,4 +74,5 @@ def get_cleaned_invitees_list(invitees_list):
 
 
 if __name__ == "__main__":
-    print(get_cleaned_invitees_list(INVITEES_LIST))
+    # print(get_cleaned_invitees_list(INVITEES_LIST))
+    print(dict(zip(get_cleaned_invitees_list(INVITEES_LIST), INVITEES_LIST.splitlines())))
