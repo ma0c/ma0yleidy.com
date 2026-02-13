@@ -98,6 +98,10 @@ p {
     --bs-btn-disabled-color: #fff;
     --bs-btn-disabled-bg: #cdb6a5;
     --bs-btn-disabled-border-color: #cdb6a5;
+
+}
+
+.big-text {
     font-size: calc(3.5rem + .6vw);
 }
 

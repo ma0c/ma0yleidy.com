@@ -382,7 +382,7 @@ export function Invitation() {
                 <div className="row mt-5">
                     <div className="col text-center">
                         <a href="https://wa.me/12523496599?text=Confirmo mi asistencia a vuestra boda"
-                           className="btn btn-primary custom-btn btn-lg my-4">Confirmar Asistencia</a>
+                           className="btn btn-primary custom-btn btn-lg my-4 big-text ">Confirmar Asistencia</a>
                     </div>
                 </div>
             </section>
