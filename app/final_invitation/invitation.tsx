@@ -65,7 +65,7 @@ export function Invitation() {
     const handleCloseConfirmation = () => setShowConfirmation(false);
     const handleShowConfirmation = () => setShowConfirmation(true);
 
-    const fullURL = `${import.meta.env.VITE_BASE_URL}/${CONFIRMATION_URL}/${invitee}`;
+    const fullURL = `${import.meta.env.VITE_BASE_URL}/${CONFIRMATION_URL}/${invitee}/`;
 
     const [currentConfirmation, setCurrentConfirmation] = useState({is_confirmed: null, minutes: 0});
 
