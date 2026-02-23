@@ -18,38 +18,20 @@ import monastero_bajo  from "./assets/monastero_bajo.png";
 import {useEffect, useState} from "react";
 
 import { useParams, useNavigate } from "react-router";
-import {Button, Modal} from "react-bootstrap";
+import {Button, Form, Modal, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 
 import  "./fonts/le-jour-script.otf"
 import  "./css/timeline.css"
 import "./css/main.css"
 import "./css/envelope.css"
+import {calculateTimeLeft} from "~/utils";
 
-function calculateTimeLeft(targetDate: Date) {
-        const now = new Date();
-        const difference = targetDate.getTime() - now.getTime();
-
-        if (difference > 0) {
-            return {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / (1000 * 60)) % 60),
-                seconds: Math.floor((difference / 1000) % 60) ,
-            };
-        } else {
-            return {
-                days: 0,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-            };
-        }
-    }
+const CONFIRMATION_URL = "confirmation";
 
 export function Invitation() {
-    const validInvitees: string[] = ['angie-y-walter', 'nancy', 'blanca-y-elvia', 'jenid', 'libardo-y-gloria', 'estefania-y-juan-carlos', 'silaney-y-robinson', 'rosa-y-adrian', 'eric', 'cristian', 'camilo', 'raquel-y-camilo', 'sebastian-perez', 'sofia-y-david', 'ruben-y-sergio', 'tefa', 'nando-y-alejandra', 'johan', 'carolina', 'maria-isabel', 'carlos-y-laura', 'ana-maria', 'duber', 'bryan-y-lorena', 'gessiel', 'karem', 'johana-y-mafe', 'kevin-y-sofia', 'juan-carlos-y-samuel', 'andrea-y-carlos', 'ivan-y-juanes', 'wilson-y-noelbi', 'juan-esteban-bedoya', 'nuri-jorge-y-jorgito', 'robinson-y-danny', 'samuel-y-maria', 'hellen', 'estefania-y-kathe', 'rodrigo', 'mari', 'gladis', 'jose-david-y-marjorie', 'carlos--andres-y-esposa', 'yazmin-y-nore', 'brandon', 'javier', 'julian', 'nates', 'zulma', 'maria-y-alfonso', 'dany-mauricio', 'juan-esteban-sierra', 'walter-y-esposa', 'maria', 'bernice']
+    const validInvitees: string[] = ['ma0', 'angie-y-walter', 'nancy', 'blanca-y-elvia', 'jenid', 'libardo-y-gloria', 'estefania-y-juan-carlos', 'silaney-y-robinson', 'rosa-y-adrian', 'eric', 'cristian', 'camilo', 'raquel-y-camilo', 'sebastian-perez', 'sofia-y-david', 'ruben-y-sergio', 'tefa', 'nando-y-alejandra', 'johan', 'carolina', 'maria-isabel', 'carlos-y-laura', 'ana-maria', 'duber', 'bryan-y-lorena', 'gessiel', 'karem', 'johana-y-mafe', 'kevin-y-sofia', 'juan-carlos-y-samuel', 'andrea-y-carlos', 'ivan-y-juanes', 'wilson-y-noelbi', 'juan-esteban-bedoya', 'nuri-jorge-y-jorgito', 'robinson-y-danny', 'samuel-y-maria', 'hellen', 'estefania-y-kathe', 'rodrigo', 'mari', 'gladis', 'jose-david-y-marjorie', 'carlos--andres-y-esposa', 'yazmin-y-nore', 'brandon', 'javier', 'julian', 'nates', 'zulma', 'maria-y-alfonso', 'dany-mauricio', 'juan-esteban-sierra', 'walter-y-esposa', 'maria', 'bernice']
 
-    const inviteeToNameMap: Record<string, string> = {'angie-y-walter': 'Angie y Walter', 'nancy': 'Nancy', 'blanca-y-elvia': 'Blanca y Elvia', 'jenid': 'Jenid', 'libardo-y-gloria': 'Libardo y Gloria', 'estefania-y-juan-carlos': 'Estefanía y Juan Carlos', 'silaney-y-robinson': 'Silaney y Robinson', 'rosa-y-adrian': 'Rosa y Adrian', 'eric': 'Eric', 'cristian': 'Cristian', 'camilo': 'Camilo', 'raquel-y-camilo': 'Raquel y Camilo', 'sebastian-perez': 'Sebastián Perez', 'sofia-y-david': 'Sofía y David', 'ruben-y-sergio': 'Ruben y Sergio', 'tefa': 'Tefa', 'nando-y-alejandra': 'Nando y Alejandra', 'johan': 'Johan', 'carolina': 'Carolina', 'maria-isabel': 'Maria Isabel', 'carlos-y-laura': 'Carlos y Laura', 'ana-maria': 'Ana María', 'duber': 'Duber', 'bryan-y-lorena': 'Bryan y Lorena', 'gessiel': 'Gessiel', 'karem': 'Karem', 'johana-y-mafe': 'Johana y Mafe', 'kevin-y-sofia': 'Kevin y Sofia', 'juan-carlos-y-samuel': 'Juan Carlos y Samuel', 'andrea-y-carlos': 'Andrea y Carlos', 'ivan-y-juanes': 'Ivan y Juanes', 'wilson-y-noelbi': 'Wilson y Noelbi', 'juan-esteban-bedoya': 'Juan Esteban Bedoya', 'nuri-jorge-y-jorgito': 'Nuri Jorge y Jorgito', 'robinson-y-danny': 'Robinson y Danny', 'samuel-y-maria': 'Samuel y Maria', 'hellen': 'Hellen', 'estefania-y-kathe': 'Estefanía y Kathe', 'rodrigo': 'Rodrigo', 'mari': 'Mari', 'gladis': 'Gladis', 'jose-david-y-marjorie': 'Jose David y Marjorie', 'carlos--andres-y-esposa': 'Carlos  Andres y Esposa', 'yazmin-y-nore': 'Yazmin y Nore', 'brandon': 'Brandon', 'javier': 'Javier', 'julian': 'Julian', 'nates': 'Nates', 'zulma': 'Zulma', 'maria-y-alfonso': 'Maria y Alfonso', 'dany-mauricio': 'Dany Mauricio', 'juan-esteban-sierra': 'Juan Esteban Sierra', 'walter-y-esposa': 'Walter y Esposa', 'maria': 'Maria', 'bernice': 'Bernice'}
+    const inviteeToNameMap: Record<string, string> = {'ma0': 'Mauricio Andres Collazos Calambas','angie-y-walter': 'Angie y Walter', 'nancy': 'Nancy', 'blanca-y-elvia': 'Blanca y Elvia', 'jenid': 'Jenid', 'libardo-y-gloria': 'Libardo y Gloria', 'estefania-y-juan-carlos': 'Estefanía y Juan Carlos', 'silaney-y-robinson': 'Silaney y Robinson', 'rosa-y-adrian': 'Rosa y Adrian', 'eric': 'Eric', 'cristian': 'Cristian', 'camilo': 'Camilo', 'raquel-y-camilo': 'Raquel y Camilo', 'sebastian-perez': 'Sebastián Perez', 'sofia-y-david': 'Sofía y David', 'ruben-y-sergio': 'Ruben y Sergio', 'tefa': 'Tefa', 'nando-y-alejandra': 'Nando y Alejandra', 'johan': 'Johan', 'carolina': 'Carolina', 'maria-isabel': 'Maria Isabel', 'carlos-y-laura': 'Carlos y Laura', 'ana-maria': 'Ana María', 'duber': 'Duber', 'bryan-y-lorena': 'Bryan y Lorena', 'gessiel': 'Gessiel', 'karem': 'Karem', 'johana-y-mafe': 'Johana y Mafe', 'kevin-y-sofia': 'Kevin y Sofia', 'juan-carlos-y-samuel': 'Juan Carlos y Samuel', 'andrea-y-carlos': 'Andrea y Carlos', 'ivan-y-juanes': 'Ivan y Juanes', 'wilson-y-noelbi': 'Wilson y Noelbi', 'juan-esteban-bedoya': 'Juan Esteban Bedoya', 'nuri-jorge-y-jorgito': 'Nuri Jorge y Jorgito', 'robinson-y-danny': 'Robinson y Danny', 'samuel-y-maria': 'Samuel y Maria', 'hellen': 'Hellen', 'estefania-y-kathe': 'Estefanía y Kathe', 'rodrigo': 'Rodrigo', 'mari': 'Mari', 'gladis': 'Gladis', 'jose-david-y-marjorie': 'Jose David y Marjorie', 'carlos--andres-y-esposa': 'Carlos  Andres y Esposa', 'yazmin-y-nore': 'Yazmin y Nore', 'brandon': 'Brandon', 'javier': 'Javier', 'julian': 'Julian', 'nates': 'Nates', 'zulma': 'Zulma', 'maria-y-alfonso': 'Maria y Alfonso', 'dany-mauricio': 'Dany Mauricio', 'juan-esteban-sierra': 'Juan Esteban Sierra', 'walter-y-esposa': 'Walter y Esposa', 'maria': 'Maria', 'bernice': 'Bernice'}
 
     const { invitee } = useParams();
 
@@ -73,11 +55,84 @@ export function Invitation() {
         return () => clearInterval(timer);
     }, []);
 
-    // Modal state
+    // Modal letter
     const [show, setShow] = useState(true);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const handleCloseConfirmation = () => setShowConfirmation(false);
+    const handleShowConfirmation = () => setShowConfirmation(true);
+
+    const fullURL = `${import.meta.env.VITE_BASE_URL}/${CONFIRMATION_URL}/${invitee}`;
+
+    const [currentConfirmation, setCurrentConfirmation] = useState({is_confirmed: null, minutes: 0});
+
+
+    useEffect(() => {
+        console.log("Fetching confirmation for invitee:", invitee);
+        console.log("Full URL:", fullURL);
+        fetch(
+            fullURL,
+            {
+                method: 'GET',
+            }
+        ).then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        }).then(data => {
+            console.log("Fetched confirmation data:", data);
+            setCurrentConfirmation(data);
+        }).catch(error => {
+            console.error('Error fetching confirmation:', error);
+        });
+    }, []);
+    const [is_confirmed, setIsConfirmed] = useState(currentConfirmation.is_confirmed);
+    const [minutes, setMinutes] = useState(currentConfirmation.minutes);
+
+    const onSubmit = () => {
+        console.log("Sending data");
+        const data = {
+            is_confirmed: is_confirmed,
+            minutes: minutes,
+        }
+       console.log(data);
+        console.log()
+
+        fetch(
+            fullURL,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                method: 'PUT',
+                body: JSON.stringify(data),
+            }
+        )
+        .then(response => {
+                if (response.ok) {
+                    response.json().then(data => {
+                        console.log(data)
+                        setCurrentConfirmation(data);
+                        setShowConfirmation(false);
+                    })
+                }
+                else {
+                    console.log('Error:', response);
+                    console.log('Error:', response.body);
+                }
+            }
+        )
+        .catch(error => {
+            console.log('Error:', error);
+
+        });
+    }
     return (
         <main className="container-fluid">
             <section id="monastero-upper">
@@ -381,8 +436,11 @@ export function Invitation() {
             <section id="confirmar">
                 <div className="row mt-5">
                     <div className="col text-center">
-                        <a href="https://wa.me/12523496599?text=Confirmo mi asistencia a vuestra boda"
-                           className="btn btn-primary custom-btn btn-lg my-4 big-text ">Confirmar Asistencia</a>
+
+                       <Button className="btn btn-primary custom-btn btn-lg my-4 big-text " onClick={handleShowConfirmation}>
+                            Confirmar Asistencia
+                       </Button>
+
                     </div>
                 </div>
             </section>
@@ -392,7 +450,7 @@ export function Invitation() {
                          className="img-fluid mx-auto d-block my-4"/>
                 </div>
             </section>
-            <section id="modal">
+            <section id="modal-letter">
                <Modal show={show} onHide={handleClose} fullscreen={true} >
                    <Modal.Body style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                        <div className="wrapper">
@@ -407,12 +465,66 @@ export function Invitation() {
                                    Nos casamos
                                </p>
                                <Button className="btn btn-primary custom-btn" onClick={handleClose}>
-                                    Click para mas detalles
+                                    <h3>
+                                        Click para mas detalles
+                                    </h3>
                               </Button>
                            </div>
                        </div>
                    </Modal.Body>
                   </Modal>
+            </section>
+            <section id="modal-confirmation">
+                <Modal show={showConfirmation} onHide={handleCloseConfirmation} centered dialogClassName="modal-90w" size="lg">
+                    <Modal.Header closeButton></Modal.Header>
+                    <Modal.Body style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="confirmation">
+                                <div className="row">
+                                    <p>
+                                        Irás a nuestra boda?
+                                    </p>
+                                </div>
+                                <div className="row">
+                                    <ToggleButtonGroup type="radio" name="is_confirmed" defaultValue={currentConfirmation.is_confirmed} onChange={(value) => setIsConfirmed(value)}>
+                                        <ToggleButton id="confirm-yes" name="confirm-yes" value={true}><h3>Si</h3></ToggleButton>
+                                        <ToggleButton id="confirm-no" name="confirm-no" value={false}><h3>No</h3></ToggleButton>
+                                    </ToggleButtonGroup>
+                                </div>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="confirmation">
+                                <div className="row">
+                                    <p>
+                                        Cuánto durará tu intervención?
+                                    </p>
+                                </div>
+                                <div className="row">
+                                    <ToggleButtonGroup type="radio" name="minutes" defaultValue={currentConfirmation.minutes} onChange={(value) => setMinutes(value)}>
+                                        <ToggleButton id="minutes-1" name="minutes" value={1}><h3>1</h3></ToggleButton>
+                                        <ToggleButton id="minutes-2" name="minutes-3" value={2}><h3>2</h3></ToggleButton>
+                                        <ToggleButton id="minutes-3" name="minutes-3" value={3}><h3>3</h3></ToggleButton>
+                                    </ToggleButtonGroup>
+                                </div>
+                            </Form.Group>
+
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer className="justify-content-center">
+                        <Button variant="primary" onClick={onSubmit}>
+                                <h3>Enviar confirmación</h3>
+                        </Button>
+                        {/*<a href="https://wa.me/12523496599?text=Confirmo mi asistencia a vuestra boda">*/}
+                        {/*    <Button className="btn btn-success custom-btn">*/}
+                        {/*        <h3>Mensaje al novio</h3>*/}
+                        {/*    </Button>*/}
+                        {/*</a>*/}
+                        {/*<a href="https://wa.me/573153654999?text=Confirmo mi asistencia a vuestra boda">*/}
+                        {/*    <Button className="btn btn-success custom-btn">*/}
+                        {/*        <h3>Mensaje a la novia</h3>*/}
+                        {/*    </Button>*/}
+                        {/*</a>*/}
+                    </Modal.Footer>
+                </Modal>
             </section>
         </main>
     )

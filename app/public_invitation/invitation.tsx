@@ -18,27 +18,8 @@ import termina  from "./assets/termina.png";
 import monastero_bajo  from "./assets/monastero_bajo.png";
 
 import {useEffect, useState} from "react";
+import {calculateTimeLeft} from "~/utils";
 
-function calculateTimeLeft(targetDate: Date) {
-        const now = new Date();
-        const difference = targetDate.getTime() - now.getTime();
-
-        if (difference > 0) {
-            return {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / (1000 * 60)) % 60),
-                seconds: Math.floor((difference / 1000) % 60) ,
-            };
-        } else {
-            return {
-                days: 0,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-            };
-        }
-    }
 
 export function Invitation() {
 
